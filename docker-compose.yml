@@ -1,0 +1,16 @@
+
+services:
+  app-task-fenix:
+    container_name: app-task-fenix
+    build: .
+    ports:
+      - "${PORT}:${PORT}"
+    environment:
+      - NODE_ENV=${NODE_ENV}
+      - PORT=${PORT}
+      - DB_PATH=/db/database.sqlite
+    volumes:
+      - sqlite-data:/db
+
+volumes:
+  sqlite-data:
