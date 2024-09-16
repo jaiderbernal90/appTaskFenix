@@ -32,6 +32,14 @@ import { typeOrmConfig } from './infrastructure/database/providers/database.conf
       useFactory: typeOrmConfig,
       inject: [ConfigService]
     }),
+    JwtModule.registerAsync({
+      imports: [ConfigModule],
+      useFactory: async (configService: ConfigService) => ({
+        secret: configService.get<string>('JWT_SECRET'),
+        signOptions: { expiresIn: '4h' }
+      }),
+      inject: [ConfigService]
+    }),
     TypeOrmModule.forFeature([User])
   ],
   controllers: [AppController, AuthController, UserController],

@@ -10,6 +10,10 @@ services:
     environment:
       - NODE_ENV=${NODE_ENV}
       - DB_PATH=${DB_PATH}
+      - PORT=${PORT}
+      - TYPEORM_SYNC=${TYPEORM_SYNC}
+      - TYPEORM_LOGGING=${TYPEORM_LOGGING}
+      - JWT_SECRET=${JWT_SECRET}
     volumes:
       - ./db:/usr/src/app/db
     user: "node"
