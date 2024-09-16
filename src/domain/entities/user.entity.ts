@@ -1,5 +1,11 @@
-import { Column, CreateDateColumn, DeleteDateColumn, Entity, JoinColumn, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
-import { Post } from './post.entity';
+import {
+  Column,
+  CreateDateColumn,
+  DeleteDateColumn,
+  Entity,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn
+} from 'typeorm';
 
 @Entity()
 export class User {
@@ -14,13 +20,9 @@ export class User {
 
   @Column({ type: 'int' })
   age: number;
- 
-  @Column({ type: 'varchar', select:false })
-  password: string;
 
-  @OneToMany(() => Post, (post) => post.user)
-  @JoinColumn({name: 'post_id'})
-  posts: Post[];
+  @Column({ type: 'varchar', select: false })
+  password: string;
 
   @CreateDateColumn()
   created!: Date;

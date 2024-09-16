@@ -1,26 +1,20 @@
 import { ClassSerializerInterceptor, Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
-import { ConfigModule } from '@nestjs/config';
-import { AuthService } from './application/services/auth.service';
-import { AuthController } from './application/controllers/auth.controller';
-import { AUTH_SERVICE_TOKEN } from './application/interfaces/services/IAuthService.interface';
-import { JwtModule } from '@nestjs/jwt';
-import { UserService } from './application/services/user.service';
-import { USER_SERVICE_TOKEN } from './application/interfaces/services/IUserService.interface';
-import { UserController } from './application/controllers/user.controller';
-import { TypeOrmModule } from '@nestjs/typeorm';
-import { join } from 'path';
-import { User } from './domain/entities/user.entity';
-import UserRepository from './infrastructure/database/repositories/user.repository';
+import { ConfigModule, ConfigService } from '@nestjs/config';
 import { APP_INTERCEPTOR } from '@nestjs/core';
-import { POST_SERVICE_TOKEN } from './application/interfaces/services/IPostService.interface';
-import { PostService } from './application/services/post.service';
-import PostRepository from './infrastructure/database/repositories/post.repository';
-import { PostController } from './application/controllers/post.controller';
-import { Post } from './domain/entities/post.entity';
-import { JwtStrategy } from './application/utils/strategies/jwt.strategy';
-import { databaseProviders } from './infrastructure/database/providers/database.providers';
+import { JwtModule } from '@nestjs/jwt';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { AppService } from './app.service';
+import { AppController } from './app.controller';
+import { User } from '@entities/user.entity';
+import { AuthController } from '@controllers/auth.controller';
+import { AuthService } from '@services/auth.service';
+import { UserController } from '@controllers/user.controller';
+import { UserService } from '@services/user.service';
+import { JwtStrategy } from '@utils/strategies/jwt.strategy';
+import UserRepository from '@repositories/user.repository';
+import { AUTH_SERVICE_TOKEN } from '@interfaces/services/IAuthService.interface';
+import { USER_SERVICE_TOKEN } from '@interfaces/services/IUserService.interface';
+import { typeOrmConfig } from './infrastructure/database/providers/database.config';
 
 @Module({
   imports: [
@@ -33,22 +27,21 @@ import { databaseProviders } from './infrastructure/database/providers/database.
       secret: process.env.JWT_SECRET,
       signOptions: { expiresIn: '4h' }
     }),
-    TypeOrmModule.forFeature([User, Post])
+    TypeOrmModule.forRootAsync({
+      imports: [ConfigModule],
+      useFactory: typeOrmConfig,
+      inject: [ConfigService]
+    }),
+    TypeOrmModule.forFeature([User])
   ],
-  controllers: [AppController, AuthController, UserController, PostController],
+  controllers: [AppController, AuthController, UserController],
   providers: [
     AppService,
     JwtStrategy,
-    PostRepository,
     UserRepository,
-    ...databaseProviders,
     {
       provide: APP_INTERCEPTOR,
       useClass: ClassSerializerInterceptor
-    },
-    {
-      provide: POST_SERVICE_TOKEN,
-      useClass: PostService
     },
     {
       provide: AUTH_SERVICE_TOKEN,

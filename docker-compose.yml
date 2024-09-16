@@ -1,16 +1,18 @@
+version: '3.8'
 
 services:
-  app-task-fenix:
-    container_name: app-task-fenix
-    build: .
+  app:
+    build:
+      context: .
+      target: production
     ports:
       - "${PORT}:${PORT}"
     environment:
       - NODE_ENV=${NODE_ENV}
-      - PORT=${PORT}
-      - DB_PATH=/db/database.sqlite
+      - DB_PATH=${DB_PATH}
     volumes:
-      - sqlite-data:/db
+      - ./db:/usr/src/app/db
+    user: "node"
 
 volumes:
-  sqlite-data:
+  db:
