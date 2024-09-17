@@ -25,7 +25,7 @@ Para desplegar la aplicación utilizando Docker, sigue estos pasos:
    ```
    NODE_ENV=production
    PORT=YOUR_PORT
-   DB_PATH=PATH_TO_DB_FILE
+   DB_PATH=PATH_TO_DB_FILE or /usr/src/app/db/database.sqlite
    TYPEORM_SYNC=false
    TYPEORM_LOGGING=false
    JWT_SECRET=YOUR_JWT_SECRET
