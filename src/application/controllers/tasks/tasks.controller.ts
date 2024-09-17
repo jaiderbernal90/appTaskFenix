@@ -10,6 +10,7 @@ import {
   Post,
   Put,
   Query,
+  UseGuards,
   UsePipes,
   ValidationPipe
 } from '@nestjs/common';
@@ -21,8 +22,10 @@ import { UpdateTaskDto } from '../../dto/task/update-task.dto';
 import { IResponse } from '@interfaces/IResponse.interface';
 import { PageDto } from '../../dto/page.dto';
 import { ITasksService } from '@interfaces/services/ITaskService.interface';
+import { JwtAuthGuard } from '../../utils/guards/jwt-auth.guard';
 
 @Controller('tasks')
+@UseGuards(JwtAuthGuard)
 export class TasksController {
   constructor(
     @Inject('TASKS_SERVICE_TOKEN') private readonly service: ITasksService
