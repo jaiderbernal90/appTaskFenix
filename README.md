@@ -1,73 +1,73 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
+# Prueba Técnica Backend Developer (Node.js) - Fenix
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+## Introducción
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+Este proyecto representa la solución presentada para la prueba técnica del puesto de Backend Developer (Node.js) en la empresa Fenix. La aplicación ha sido desarrollada utilizando NestJS y incorpora las siguientes características:
 
-## Description
+- Implementación de pruebas unitarias para asegurar la calidad del código.
+- Aplicación de las mejores prácticas de desarrollo.
+- Implementación de medidas de seguridad.
+- Se incluye una colección de Postman para facilitar el testeo de la API.
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+## Despliegue con Docker
 
-## Installation
+Para desplegar la aplicación utilizando Docker, sigue estos pasos:
 
-```bash
-$ npm install
+1. Asegúrate de tener Docker y Docker Compose instalados en tu sistema.
+
+2. Clona este repositorio:
+   ```
+   git clone https://github.com/jaiderbernal90/appTaskFenix.git
+   cd appTaskFenix
+   ```
+
+3. Crea un archivo `.env` en la raíz del proyecto con las siguientes variables de entorno:
+   ```
+   NODE_ENV=production
+   PORT=YOUR_PORT
+   DB_PATH=PATH_TO_DB_FILE
+   TYPEORM_SYNC=false
+   TYPEORM_LOGGING=false
+   JWT_SECRET=YOUR_JWT_SECRET
+   ```
+   Asegúrate de reemplazar los valores con los apropiados para tu entorno.
+
+4. Construye y levanta los contenedores Docker:
+   ```
+   docker-compose up --build
+   ```
+
+5. La aplicación estará disponible en `http://localhost:3000` (o el puerto que hayas especificado).
+
+## Pruebas Unitarias
+
+Se han implementado pruebas unitarias para asegurar la calidad y el correcto funcionamiento del código. Para ejecutar las pruebas:
+
+```
+npm run test
 ```
 
-## Running the app
+## Colección de Postman
 
-```bash
-# development
-$ npm run start
+Se adjunta una colección de Postman para facilitar el testeo de la API. Puedes encontrar el archivo `APP-TASK-FENIX.postman_collection` en la raíz del proyecto. Importa esta colección en Postman para probar los diferentes endpoints de la API.
 
-# watch mode
-$ npm run start:dev
+## Seguridad
 
-# production mode
-$ npm run start:prod
-```
+Se han implementado varias medidas de seguridad, incluyendo:
 
-## Test
+- Autenticación JWT
+- Validación de datos de entrada
+- Protección contra inyecciones SQL
+- Hashing seguro de contraseñas
 
-```bash
-# unit tests
-$ npm run test
+## Mejores Prácticas
 
-# e2e tests
-$ npm run test:e2e
+Este proyecto sigue las mejores prácticas de desarrollo, incluyendo:
 
-# test coverage
-$ npm run test:cov
-```
+- Arquitectura modular y escalable
+- Uso de interfaces y dependency injection
+- Manejo de errores consistente
+- Logging apropiado
+- Configuración basada en entorno
 
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](LICENSE).
+Para cualquier pregunta o aclaración adicional, no dudes en contactar.
