@@ -1,14 +1,14 @@
 import { Injectable } from '@nestjs/common';
-import { IAuthService } from '@interfaces/services/IAuthService.interface';
-import UsersRepository from '@/src/infrastructure/database/repositories/users.repository';
+import { HttpException, NotFoundException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
-import { LoginDto } from '@dto/auth/login.dto';
+import { IAuthService } from '@interfaces/services/IAuthService.interface';
+import UsersRepository from '../../../infrastructure/database/repositories/users.repository';
+import { LoginDto } from '../../dto/auth/login.dto';
 import { IResponseToken } from '@interfaces/IResponseToken.interface';
-import { compareHash, generateHash } from '@utils/handleBcrypt';
+import { compareHash, generateHash } from '../../utils/handleBcrypt';
 import { IResponse } from '@interfaces/IResponse.interface';
 import { ListUserDto } from '@/src/application/dto/user/list-user.dto';
-import { RegisterDto } from '@dto/auth/register.dto';
-import { HttpException, NotFoundException } from '@nestjs/common';
+import { RegisterDto } from '../../dto/auth/register.dto';
 
 @Injectable()
 export class AuthService implements IAuthService {

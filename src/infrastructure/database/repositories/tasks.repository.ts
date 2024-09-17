@@ -2,7 +2,7 @@ import { PageOptionsDto } from '@/src/application/dto/page-options.dto';
 import { CreateTaskDto } from '@/src/application/dto/task/create-task.dto';
 import { ListTaskDto } from '@/src/application/dto/task/list-task.dto';
 import { UpdateTaskDto } from '@/src/application/dto/task/update-task.dto';
-import { Task } from '@/src/domain/entities/task.entity';
+import { Task } from '../../../domain/entities/task.entity';
 import { ITasksRepository } from '@/src/domain/repositories/ITasks.repository';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository, SelectQueryBuilder, UpdateResult } from 'typeorm';

@@ -1,14 +1,14 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { IUserService } from '@interfaces/services/IUserService.interface';
-import UsersRepository from '@/src/infrastructure/database/repositories/users.repository';
+import UsersRepository from '../../../infrastructure/database/repositories/users.repository';
 import { ListUserDto } from '@/src/application/dto/user/list-user.dto';
-import { PageOptionsDto } from '@dto/page-options.dto';
-import { PageDto } from '@dto/page.dto';
-import { PageMetaDto } from '@dto/page-meta.dto';
+import { PageOptionsDto } from '../../dto/page-options.dto';
+import { PageDto } from '../../dto/page.dto';
+import { PageMetaDto } from '../../dto/page-meta.dto';
 import { UpdateUserDto } from '@/src/application/dto/user/update-user.dto';
 import { CreateUserDto } from '@/src/application/dto/user/create-user.dto';
 import { IResponse } from '@interfaces/IResponse.interface';
-import { generateHash } from '@utils/handleBcrypt';
+import { generateHash } from '../../utils/handleBcrypt';
 
 @Injectable()
 export class UsersService implements IUserService {

@@ -4,7 +4,7 @@ import { CreateUserDto } from '@/src/application/dto/user/create-user.dto';
 import { ListUserDto } from '@/src/application/dto/user/list-user.dto';
 import { PageOptionsDto } from '@dto/page-options.dto';
 import { UpdateUserDto } from '@/src/application/dto/user/update-user.dto';
-import { User } from '@entities/user.entity';
+import { User } from '../../../domain/entities/user.entity';
 import { IUsersRepository } from '@/src/domain/repositories/IUsers.repository';
 
 export default class UsersRepository implements IUsersRepository {

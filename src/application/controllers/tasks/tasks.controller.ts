@@ -13,13 +13,13 @@ import {
   UsePipes,
   ValidationPipe
 } from '@nestjs/common';
-import { ApiPaginatedResponse } from '@utils/constants';
-import { PageOptionsDto } from '@dto/page-options.dto';
-import { ListTaskDto } from '@dto/task/list-task.dto';
-import { CreateTaskDto } from '@dto/task/create-task.dto';
-import { UpdateTaskDto } from '@dto/task/update-task.dto';
+import { ApiPaginatedResponse } from '../../utils/constants';
+import { PageOptionsDto } from '../../dto/page-options.dto';
+import { ListTaskDto } from '../../dto/task/list-task.dto';
+import { CreateTaskDto } from '../../dto/task/create-task.dto';
+import { UpdateTaskDto } from '../../dto/task/update-task.dto';
 import { IResponse } from '@interfaces/IResponse.interface';
-import { PageDto } from '@dto/page.dto';
+import { PageDto } from '../../dto/page.dto';
 import { ITasksService } from '@interfaces/services/ITaskService.interface';
 
 @Controller('tasks')

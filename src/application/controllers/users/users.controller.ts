@@ -14,15 +14,15 @@ import {
   UsePipes,
   ValidationPipe
 } from '@nestjs/common';
-import { JwtAuthGuard } from '@utils/guards/jwt-auth.guard';
-import { PageOptionsDto } from '@dto/page-options.dto';
-import { ListUserDto } from '@/src/application/dto/user/list-user.dto';
-import { CreateUserDto } from '@/src/application/dto/user/create-user.dto';
-import { UpdateUserDto } from '@/src/application/dto/user/update-user.dto';
+import { JwtAuthGuard } from '../../utils/guards/jwt-auth.guard';
+import { PageOptionsDto } from '../../dto/page-options.dto';
+import { ListUserDto } from '../../../application/dto/user/list-user.dto';
+import { CreateUserDto } from '../../../application/dto/user/create-user.dto';
+import { UpdateUserDto } from '../../../application/dto/user/update-user.dto';
 import { IUserService } from '@interfaces/services/IUserService.interface';
 import { IResponse } from '@interfaces/IResponse.interface';
-import { ApiPaginatedResponse } from '@utils/constants';
-import { PageDto } from '@dto/page.dto';
+import { ApiPaginatedResponse } from '../../utils/constants';
+import { PageDto } from '../../dto/page.dto';
 
 @Controller('users')
 @UseGuards(JwtAuthGuard)

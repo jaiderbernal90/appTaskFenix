@@ -1,12 +1,12 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { ListTaskDto } from '@/src/application/dto/task/list-task.dto';
 import { PageOptionsDto } from '@dto/page-options.dto';
-import { PageDto } from '@dto/page.dto';
-import { PageMetaDto } from '@dto/page-meta.dto';
+import { PageDto } from '../../dto/page.dto';
+import { PageMetaDto } from '../../dto/page-meta.dto';
 import { IResponse } from '@interfaces/IResponse.interface';
-import { UpdateTaskDto } from '@/src/application/dto/task/update-task.dto';
-import { CreateTaskDto } from '@/src/application/dto/task/create-task.dto';
-import TasksRepository from '@/src/infrastructure/database/repositories/tasks.repository';
+import { UpdateTaskDto } from '../../../application/dto/task/update-task.dto';
+import { CreateTaskDto } from '../../../application/dto/task/create-task.dto';
+import TasksRepository from '../../../infrastructure/database/repositories/tasks.repository';
 
 @Injectable()
 export class TasksService {

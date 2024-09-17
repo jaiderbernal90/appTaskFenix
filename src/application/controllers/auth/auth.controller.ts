@@ -7,8 +7,8 @@ import {
   ValidationPipe
 } from '@nestjs/common';
 
-import { LoginDto } from '@dto/auth/login.dto';
-import { RegisterDto } from '@dto/auth/register.dto';
+import { LoginDto } from '../../dto/auth/login.dto';
+import { RegisterDto } from '../../dto/auth/register.dto';
 import { IAuthService } from '@interfaces/services/IAuthService.interface';
 
 @Controller('auth')
