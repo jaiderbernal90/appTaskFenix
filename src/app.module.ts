@@ -6,15 +6,20 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppService } from './app.service';
 import { AppController } from './app.controller';
 import { User } from '@entities/user.entity';
-import { AuthController } from '@controllers/auth.controller';
-import { AuthService } from '@services/auth.service';
-import { UserController } from '@controllers/user.controller';
-import { UserService } from '@services/user.service';
+import { AuthController } from '@controllers/auth/auth.controller';
+import { AuthService } from '@services/auth/auth.service';
+import { UsersController } from '@controllers/users/users.controller';
+import { UsersService } from '@services/users/users.service';
 import { JwtStrategy } from '@utils/strategies/jwt.strategy';
-import UserRepository from '@repositories/user.repository';
 import { AUTH_SERVICE_TOKEN } from '@interfaces/services/IAuthService.interface';
-import { USER_SERVICE_TOKEN } from '@interfaces/services/IUserService.interface';
+import { USERS_SERVICE_TOKEN } from '@interfaces/services/IUserService.interface';
+import { TASKS_SERVICE_TOKEN } from '@interfaces/services/ITaskService.interface';
 import { typeOrmConfig } from './infrastructure/database/providers/database.config';
+import { TasksController } from './application/controllers/tasks/tasks.controller';
+import UsersRepository from './infrastructure/database/repositories/users.repository';
+import { TasksService } from './application/services/tasks/tasks.service';
+import { Task } from '@entities/task.entity';
+import TasksRepository from './infrastructure/database/repositories/tasks.repository';
 
 @Module({
   imports: [
@@ -40,24 +45,34 @@ import { typeOrmConfig } from './infrastructure/database/providers/database.conf
       }),
       inject: [ConfigService]
     }),
-    TypeOrmModule.forFeature([User])
+    TypeOrmModule.forFeature([User, Task])
   ],
-  controllers: [AppController, AuthController, UserController],
+  controllers: [
+    AppController,
+    AuthController,
+    UsersController,
+    TasksController
+  ],
   providers: [
     AppService,
     JwtStrategy,
-    UserRepository,
+    UsersRepository,
+    TasksRepository,
     {
       provide: APP_INTERCEPTOR,
       useClass: ClassSerializerInterceptor
+    },
+    {
+      provide: TASKS_SERVICE_TOKEN,
+      useClass: TasksService
     },
     {
       provide: AUTH_SERVICE_TOKEN,
       useClass: AuthService
     },
     {
-      provide: USER_SERVICE_TOKEN,
-      useClass: UserService
+      provide: USERS_SERVICE_TOKEN,
+      useClass: UsersService
     }
   ]
 })

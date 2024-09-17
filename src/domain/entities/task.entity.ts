@@ -8,18 +8,18 @@ import {
 } from 'typeorm';
 
 @Entity()
-export class User {
+export class Task {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ type: 'varchar', length: 30 })
-  fullname: string;
+  @Column({ type: 'varchar', length: 255 })
+  title: string;
 
-  @Column({ type: 'varchar', length: 40 })
-  email: string;
+  @Column({ type: 'text' })
+  description: string;
 
-  @Column({ type: 'varchar', select: false })
-  password: string;
+  @Column({ type: 'varchar' })
+  state: string;
 
   @CreateDateColumn()
   created!: Date;

@@ -14,21 +14,21 @@ import {
   UsePipes,
   ValidationPipe
 } from '@nestjs/common';
-import { CreateUserDto } from '../dto/user/create-user.dto';
-import { ApiPaginatedResponse } from '../utils/constants';
-import { PageOptionsDto } from '../dto/page-options.dto';
-import { PageDto } from '../dto/page.dto';
-import { IUserService } from '../interfaces/services/IUserService.interface';
-import { ListUserDto } from '../dto/user/list-user.dto';
-import { IResponse } from '../interfaces/IResponse.interface';
-import { UpdateUserDto } from '../dto/user/update-user.dto';
-import { JwtAuthGuard } from '../utils/guards/jwt-auth.guard';
+import { JwtAuthGuard } from '@utils/guards/jwt-auth.guard';
+import { PageOptionsDto } from '@dto/page-options.dto';
+import { ListUserDto } from '@/src/application/dto/user/list-user.dto';
+import { CreateUserDto } from '@/src/application/dto/user/create-user.dto';
+import { UpdateUserDto } from '@/src/application/dto/user/update-user.dto';
+import { IUserService } from '@interfaces/services/IUserService.interface';
+import { IResponse } from '@interfaces/IResponse.interface';
+import { ApiPaginatedResponse } from '@utils/constants';
+import { PageDto } from '@dto/page.dto';
 
 @Controller('users')
 @UseGuards(JwtAuthGuard)
-export class UserController {
+export class UsersController {
   constructor(
-    @Inject('USER_SERVICE_TOKEN') private readonly service: IUserService
+    @Inject('USERS_SERVICE_TOKEN') private readonly service: IUserService
   ) {}
 
   @Get()

@@ -1,13 +1,13 @@
 import { InjectRepository } from '@nestjs/typeorm';
-import { CreateUserDto } from '@dto/user/create-user.dto';
-import { ListUserDto } from '@dto/user/list-user.dto';
-import { PageOptionsDto } from '@dto/page-options.dto';
-import { UpdateUserDto } from '@dto/user/update-user.dto';
-import { User } from '@entities/user.entity';
-import { IUserRepository } from '@domain/repositories/IUser.repository';
 import { Repository, SelectQueryBuilder, UpdateResult } from 'typeorm';
+import { CreateUserDto } from '@/src/application/dto/user/create-user.dto';
+import { ListUserDto } from '@/src/application/dto/user/list-user.dto';
+import { PageOptionsDto } from '@dto/page-options.dto';
+import { UpdateUserDto } from '@/src/application/dto/user/update-user.dto';
+import { User } from '@entities/user.entity';
+import { IUsersRepository } from '@/src/domain/repositories/IUsers.repository';
 
-export default class UserRepository implements IUserRepository {
+export default class UsersRepository implements IUsersRepository {
   constructor(
     @InjectRepository(User) private userRepository: Repository<User>
   ) {}
@@ -17,7 +17,6 @@ export default class UserRepository implements IUserRepository {
   ): Promise<SelectQueryBuilder<User>> {
     return this.userRepository
       .createQueryBuilder('users')
-      .leftJoinAndSelect('users.posts', 'post')
       .orderBy('users.id', pageOptionsDto.order)
       .skip(pageOptionsDto.skip)
       .take(pageOptionsDto.take);
@@ -45,13 +44,7 @@ export default class UserRepository implements IUserRepository {
   async findByEmail(email: string): Promise<User> {
     return await this.userRepository
       .createQueryBuilder('users')
-      .select([
-        'users.id',
-        'users.password',
-        'users.email',
-        'users.fullname',
-        'users.age'
-      ])
+      .select(['users.id', 'users.password', 'users.email', 'users.fullname'])
       .where('users.email= :email', { email: email })
       .getOne();
   }
